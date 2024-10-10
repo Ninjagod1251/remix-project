@@ -5,7 +5,6 @@ import { PluginClient } from '@remixproject/plugin'
 import { Contract, compileContract } from './compiler'
 import { ExampleContract } from '../components/VyperResult'
 import EventEmitter from 'events'
-import { Plugin } from "@remixproject/engine";
 import { CustomRemixApi } from '@remix-api'
 
 export type VyperComplierAddress = 'https://vyper2.remixproject.org/' | 'http://localhost:8000/'
@@ -72,7 +71,7 @@ export class RemixClient extends PluginClient<any, CustomRemixApi> {
         ${message}
         can you explain why this error occurred and how to fix it?
       `
-      await this.client.call('solcoder' as any, 'error_explaining', message)
+      await this.client.call('remixAI' as any, 'error_explaining', message)
     } catch (err) {
       console.error('unable to askGpt')
       console.error(err)
@@ -83,7 +82,7 @@ export class RemixClient extends PluginClient<any, CustomRemixApi> {
 
     try {
       // @ts-ignore
-      this.call('notification', 'toast', 'cloning Snekmate Vyper repository...')
+      this.call('notification', 'toast', 'cloning Vyper repository...')
       await this.call(
         'dgitApi',
         'clone',
